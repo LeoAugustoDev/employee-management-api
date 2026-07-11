@@ -1,21 +1,25 @@
+# 🚀 Employee Management API
 
-O README deve ser escrito em português (Brasil), utilizando Markdown, com aparência moderna, organizada e profissional.
+API REST desenvolvida com **Java 21** e **Spring Boot** para gerenciamento de funcionários. Este projeto foi criado como solução para um desafio técnico, com foco na aplicação de boas práticas de desenvolvimento, arquitetura em camadas, organização do código e princípios de engenharia de software.
 
-Não utilize emojis.
+A aplicação permite realizar operações completas de **CRUD (Create, Read, Update e Delete)** de funcionários, além de contar com validação de dados, tratamento global de exceções e documentação automática da API utilizando Swagger/OpenAPI.
 
-O projeto possui as seguintes características:
+---
 
-Nome do projeto:
-Employee Management API
+## 📋 Funcionalidades
 
-Descrição:
-API REST para gerenciamento de funcionários desenvolvida em Java utilizando Spring Boot como solução para um desafio técnico.
+- ✅ Cadastrar funcionários
+- 🔍 Buscar funcionário por ID
+- 📄 Listar todos os funcionários
+- ✏️ Atualizar dados de um funcionário
+- 🗑️ Remover funcionários
+- ✔️ Validação dos dados de entrada
+- ⚠️ Tratamento global de exceções
+- 📚 Documentação automática com Swagger/OpenAPI
 
-O objetivo foi demonstrar conhecimento em arquitetura de software, boas práticas de programação, orientação a objetos e desenvolvimento de APIs REST.
+---
 
-=====================================================
-
-TECNOLOGIAS
+## 🛠️ Tecnologias Utilizadas
 
 - Java 21
 - Spring Boot
@@ -25,21 +29,24 @@ TECNOLOGIAS
 - SpringDoc OpenAPI (Swagger)
 - Maven
 
-=====================================================
+---
 
-ARQUITETURA
+## 🏛️ Arquitetura
 
-A aplicação foi organizada seguindo princípios inspirados em:
+O projeto foi estruturado seguindo princípios inspirados em:
 
 - Clean Architecture
 - Domain-Driven Design (DDD)
 - SOLID
 - Clean Code
 
-Estrutura:
+A arquitetura foi organizada para manter baixo acoplamento, alta coesão e separação de responsabilidades, facilitando manutenção, evolução e reutilização do código.
 
+### Estrutura do Projeto
+
+```text
 src/main/java
-└── br.com.leo.apigestaofuncionarios
+└── br/com/leo/apigestaofuncionarios
     └── funcionario
         ├── application
         │   ├── api
@@ -51,129 +58,155 @@ src/main/java
         ├── infra
         ├── mapper
         └── validator
+```
 
-Explique rapidamente a responsabilidade de cada camada.
+### Responsabilidade das Camadas
 
-=====================================================
+| Camada | Responsabilidade |
+|---------|------------------|
+| **application/api** | Controllers, DTOs de Request/Response e contratos da API |
+| **application/service** | Regras de negócio da aplicação |
+| **application/repository** | Interface do repositório |
+| **domain** | Entidade de domínio (`Funcionario`) |
+| **infra** | Implementação da persistência utilizando `HashMap` |
+| **mapper** | Conversão entre Entidades e DTOs |
+| **validator** | Validação das regras de entrada |
+| **exception** | Exceções customizadas e tratamento global |
+| **config** | Configurações da aplicação |
 
-FUNCIONALIDADES
+---
 
-A API permite:
+## 📦 Persistência
 
-- Cadastrar funcionário
-- Buscar funcionário por ID
-- Listar todos os funcionários
-- Atualizar funcionário
-- Excluir funcionário
-- Validação dos dados recebidos
-- Tratamento global de exceções
-- Documentação automática da API utilizando Swagger
+Conforme especificado no desafio técnico, **não foi utilizado banco de dados**.
 
-=====================================================
+Os dados são armazenados em memória utilizando um:
 
-PERSISTÊNCIA
+```java
+Map<Long, Funcionario>
+```
 
-Explique que, conforme solicitado pelo desafio técnico, a aplicação NÃO utiliza banco de dados.
+A persistência foi encapsulada por meio do **Repository Pattern**, permitindo que, futuramente, seja possível substituir a implementação por um banco de dados relacional sem impactar as regras de negócio.
 
-Toda persistência foi implementada utilizando um HashMap<Long, Funcionario>, encapsulado na camada de infraestrutura através do Repository Pattern.
+---
 
-=====================================================
+## 🌐 Endpoints
 
-ENDPOINTS
+| Método | Endpoint | Descrição |
+|---------|----------|-----------|
+| **POST** | `/funcionarios` | Cadastra um novo funcionário |
+| **GET** | `/funcionarios` | Lista todos os funcionários |
+| **GET** | `/funcionarios/{id}` | Busca um funcionário pelo ID |
+| **PUT** | `/funcionarios/{id}` | Atualiza um funcionário existente |
+| **DELETE** | `/funcionarios/{id}` | Remove um funcionário |
 
-Criar uma tabela contendo:
+---
 
-POST   /funcionarios
-GET    /funcionarios
-GET    /funcionarios/{id}
-PUT    /funcionarios/{id}
-DELETE /funcionarios/{id}
+## 📄 Documentação da API
 
-Adicionar uma breve descrição para cada endpoint.
+A documentação da API é gerada automaticamente pelo **SpringDoc OpenAPI (Swagger)**.
 
-=====================================================
+Após iniciar a aplicação, acesse:
 
-SWAGGER
+```text
+http://localhost:8080/swagger-ui.html
+```
 
-Criar uma seção explicando como acessar a documentação.
+ou
 
+```text
 http://localhost:8080/swagger-ui/index.html
+```
 
-=====================================================
+*(dependendo da configuração do SpringDoc).*
 
-COMO EXECUTAR
+---
 
-Adicionar instruções utilizando Maven.
+## ▶️ Como executar o projeto
 
-git clone
+### 1. Clone o repositório
 
-cd
+```bash
+git clone https://github.com/LeoAugustoDev/employee-management-api.git
+```
 
+### 2. Acesse a pasta do projeto
+
+```bash
+cd employee-management-api
+```
+
+### 3. Execute a aplicação
+
+Linux / macOS
+
+```bash
+./mvnw spring-boot:run
+```
+
+Windows
+
+```bash
 mvn spring-boot:run
+```
 
-=====================================================
+A aplicação será iniciada em:
 
-PADRÕES UTILIZADOS
+```text
+http://localhost:8080
+```
 
-Criar uma seção contendo:
+---
 
-- SOLID
+## 📌 Conceitos Aplicados
+
+- REST API
 - Clean Architecture
 - Domain-Driven Design (DDD)
+- SOLID
+- Clean Code
 - Repository Pattern
 - DTO Pattern
 - Mapper Pattern
 - Dependency Injection
-- Global Exception Handler
 - Bean Validation
+- Global Exception Handling
+- OpenAPI
+- Swagger
 
-Explicar rapidamente cada um.
+---
 
-=====================================================
+## 🔮 Melhorias Futuras
 
-DECISÕES DE ARQUITETURA
-
-Criar uma seção explicando as principais decisões adotadas durante o desenvolvimento, como:
-
-- Separação de responsabilidades
-- Baixo acoplamento
-- Alta coesão
-- Uso de interfaces
-- Inversão de dependência
-- Organização em camadas
-- Facilidade para substituir o mecanismo de persistência futuramente
-
-=====================================================
-
-MELHORIAS FUTURAS
-
-Criar uma lista contendo:
-
-- Persistência com PostgreSQL
+- Persistência utilizando PostgreSQL
 - Spring Data JPA
 - Docker
 - Docker Compose
-- Testes unitários com JUnit 5
-- Mockito
-- Testes de integração
+- Testes Unitários (JUnit 5 + Mockito)
+- Testes de Integração
 - Spring Security
-- JWT
+- Autenticação com JWT
 - Paginação
-- Filtros
-- Ordenação
-- Logs
+- Filtros de pesquisa
+- Logs estruturados com SLF4J
 - CI/CD com GitHub Actions
 
-=====================================================
+---
 
-QUALIDADE
+## 👨‍💻 Autor
 
-O README deve parecer um projeto profissional de portfólio de um desenvolvedor Java Backend.
+**Leonardo Augusto Lima Alves**
 
-Utilize títulos, subtítulos, tabelas e blocos de código sempre que fizer sentido.
+🔗 GitHub  
+https://github.com/LeoAugustoDev
 
-Não deixe nenhuma seção superficial.
+💼 LinkedIn  
+https://www.linkedin.com/in/leonardo-augusto-93346a3b8/
 
-Explique cada tecnologia e cada decisão arquitetural de forma objetiva.
+---
 
-O resultado deve ser digno de um projeto que será apresentado em processos seletivos para vagas de Desenvolvedor Java Backend Júnior.
+## ⭐ Considerações Finais
+
+Este projeto foi desenvolvido como solução para um desafio técnico, com o objetivo de demonstrar conhecimentos em **Java**, **Spring Boot**, **desenvolvimento de APIs REST**, **arquitetura em camadas**, **Clean Architecture**, **DDD**, **SOLID** e **boas práticas de desenvolvimento Backend**.
+
+Apesar de utilizar uma persistência em memória com `HashMap`, conforme exigido pelo desafio, a aplicação foi estruturada de forma desacoplada e preparada para futuras evoluções, permitindo a substituição da camada de persistência por um banco de dados relacional com impacto mínimo nas demais camadas da aplicação.
