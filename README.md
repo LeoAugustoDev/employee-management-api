@@ -1,4 +1,3 @@
-Crie um README.md profissional para o meu projeto GitHub.
 
 O README deve ser escrito em português (Brasil), utilizando Markdown, com aparência moderna, organizada e profissional.
 
